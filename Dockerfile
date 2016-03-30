@@ -46,7 +46,7 @@ RUN chmod 644 /etc/apache2/sites-available/ttrss.conf && \
     chmod +x /entrypoint.sh && \
     chown -R www-data:www-data /var/www/html/ttrss
 
-EXPOSE 8000
+EXPOSE 80
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
