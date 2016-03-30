@@ -10,11 +10,11 @@ First start a Postgresql instance (or use a regular instance):
 
 Then start docker-ttrss with Postgresql in a container:
 
-    sudo docker run -d --name ttrss --link ttrssdb:db -p 80:80 reuteras/docker-ttrss
+    sudo docker run -d --name ttrss --link ttrssdb:db reuteras/docker-ttrss
 
 If you have an existing database server:
 
-    sudo docker run -d --name ttrss -p 80:80 -e TTRSS_DB_HOST=<hostname> -e TTRSS_DB_USER=<username> -e TTRSS_DB_NAME=<database name> -e TTRSS_DB_PASS="<database password>" -e TTRSS_FEED_CRYPT_KEY="<feed crypt key" reuteras/docker-ttrss
+    sudo docker run -d --name ttrss -e TTRSS_DB_HOST=<hostname> -e TTRSS_DB_USER=<username> -e TTRSS_DB_NAME=<database name> -e TTRSS_DB_PASS="<database password>" -e TTRSS_FEED_CRYPT_KEY="<feed crypt key" reuteras/docker-ttrss
 
 You can specify the following parameters:
 
