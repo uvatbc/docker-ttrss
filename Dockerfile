@@ -44,7 +44,11 @@ RUN chmod 644 /etc/apache2/sites-available/ttrss.conf && \
     a2dissite 000-default && \
     a2dissite default-ssl && \
     chmod +x /entrypoint.sh && \
-    chown -R www-data:www-data /var/www/html/ttrss
+    chown -R www-data:www-data /var/www/html/ttrss && \
+    echo "net.ipv6.conf.all.disable_ipv6 = 1" >> /etc/sysctl.conf && \
+    echo "net.ipv6.conf.default.disable_ipv6 = 1" >> /etc/sysctl.conf && \
+    echo "net.ipv6.conf.lo.disable_ipv6 = 1" >> /etc/sysctl.conf && \
+    echo "net.ipv6.conf.eth0.disable_ipv6 = 1" >> /etc/sysctl.conf
 
 EXPOSE 80
 
