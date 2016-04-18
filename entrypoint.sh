@@ -26,6 +26,6 @@ sed -i -e "s/DB_NAME_VALUE/$TTRSS_DB_NAME/" /var/www/html/ttrss/config.php
 sed -i -e "s/DB_PASS_VALUE/$TTRSS_DB_PASS/" /var/www/html/ttrss/config.php
 sed -i -e "s/DB_PORT_VALUE/$TTRSS_DB_PORT/" /var/www/html/ttrss/config.php
 sed -i -e "s/FEED_CRYPT_KEY_VALUE/$TTRSS_FEED_CRYPT_KEY/" /var/www/html/ttrss/config.php
-sed -i -e "s/HOST_URL/$TTRSS_HOST_URL/" /var/www/html/ttrss/config.php
+sed -i -e "s#HOST_URL#$TTRSS_HOST_URL#" /var/www/html/ttrss/config.php
 
 exec "$@"
