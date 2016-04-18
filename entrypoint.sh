@@ -8,6 +8,7 @@ set -e
 : "${TTRSS_DB_NAME:="ttrss"}"
 : "${TTRSS_DB_PORT:="5432"}"
 : "${TTRSS_FEED_CRYPT_KEY:=""}"
+: "${TTRSS_HOST_URL:="http://localhost/"}"
 
 RESULT=$(PGPASSWORD=$TTRSS_DB_PASS psql -h "$TTRSS_DB_HOST" -U "$TTRSS_DB_USER" -q -c '\dt' "$TTRSS_DB_NAME" | \
     grep "rows" | grep -v "\(0 rows\)") > /dev/null 2>&1
@@ -25,5 +26,6 @@ sed -i -e "s/DB_NAME_VALUE/$TTRSS_DB_NAME/" /var/www/html/ttrss/config.php
 sed -i -e "s/DB_PASS_VALUE/$TTRSS_DB_PASS/" /var/www/html/ttrss/config.php
 sed -i -e "s/DB_PORT_VALUE/$TTRSS_DB_PORT/" /var/www/html/ttrss/config.php
 sed -i -e "s/FEED_CRYPT_KEY_VALUE/$TTRSS_FEED_CRYPT_KEY/" /var/www/html/ttrss/config.php
+sed -i -e "s/HOST_URL/$TTRSS_HOST_URL/" /var/www/html/ttrss/config.php
 
 exec "$@"

@@ -24,4 +24,5 @@ You can specify the following parameters:
 * `-e TTRSS_DB_USER="<database username>"` (defaults to "$DB_ENV_POSTGRES_USER")
 * `-e TTRSS_DB_PASS="<database password>"` (defaults to "$DB_ENV_POSTGRES_PASSWORD")
 * `-e TTRSS_FEED_CRYPT_KEY="<FEED_CRYPT_KEY>"` (defaults to "")
+* `-e TTRSS_HOST_URL="<HOST URL>"` (defaults to "http://localhost/")
 
