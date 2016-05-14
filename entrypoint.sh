@@ -11,8 +11,6 @@
 RESULT=$(PGPASSWORD=$TTRSS_DB_PASS psql -h "$TTRSS_DB_HOST" -U "$TTRSS_DB_USER" -q -c '\dt' "$TTRSS_DB_NAME" | \
     grep "rows" | grep -v "\(0 rows\)") > /dev/null 2>&1
 
-set -e
-
 if [[ "$RESULT" == "" ]]; then
     PGPASSWORD=$TTRSS_DB_PASS psql -h "$TTRSS_DB_HOST" -U "$TTRSS_DB_USER" -q -c "CREATE USER $TTRSS_DB_USER"
     PGPASSWORD=$TTRSS_DB_PASS psql -h "$TTRSS_DB_HOST" -U "$TTRSS_DB_USER" -q -c "CREATE DATABASE $TTRSS_DB_NAME"
