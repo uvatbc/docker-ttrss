@@ -6,7 +6,7 @@ I'm moving more of the services I use to Docker. This my Docker container for [t
 
 First start a Postgresql instance (or use a regular instance):
 
-    sudo docker run -d -p 80:80 --name ttrssdb postgres
+    sudo docker run -d --name ttrssdb postgres
 
 Then start docker-ttrss with Postgresql in a container:
 
