@@ -28,7 +28,7 @@ RUN apt-get update -yqq && \
     apt-get remove -y git && \
     apt-get autoremove -y && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* &&
+    rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/* && \
     rm -rf /usr/share/doc /usr/local/share/man /var/cache/debconf/*-old
 
