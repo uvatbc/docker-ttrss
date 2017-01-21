@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 : "${TTRSS_DB_HOST:="$DB_PORT_5432_TCP_ADDR"}"
 : "${TTRSS_DB_USER:="$DB_ENV_POSTGRES_USER"}"
 : "${TTRSS_DB_PASS:="$DB_ENV_POSTGRES_PASSWORD"}"
