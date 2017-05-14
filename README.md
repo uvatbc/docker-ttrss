@@ -1,18 +1,23 @@
 # docker-ttrss
 
+This is a fork of [reuteras/docker-ttrss](https://github.com/reuteras/docker-ttrss) because the original did not work out-of-the-box for me and I needed the usage to be much simpler.
+
+The original readme message from was:  
 I'm moving more of the services I use to Docker. This my Docker container for [tt-rss](https://tt-rss.org/). This container only supports Postgresql.
 
 ## Usage
 
 ### Docker Image, Compose and Makefile (aka The Simple Way)
 
-To build the image
+To build the image:
 
     make build
 
-To start the Postgres and TTRSS containers
+To start the Postgres and TTRSS containers:
 
     make up
+
+That is all.
 
 ### Manually
 First start a Postgresql instance (or use a regular instance):
