@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  web:
+    image: uvatbc/docker-ttrss
+    ports:
+      - "8001:80"
+    depends_on:
+      - db
+    links:
+      - db
+    environment:
+      - TTRSS_DB_HOST=db
+      - TTRSS_DB_USER=postgres
+      - TTRSS_DB_PASS=
+    restart: always
+
+  db:
+    image: postgres
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data/pgdata
