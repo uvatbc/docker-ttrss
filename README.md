@@ -5,6 +5,19 @@ This is a fork of [reuteras/docker-ttrss](https://github.com/reuteras/docker-ttr
 The original readme message from was:  
 I'm moving more of the services I use to Docker. This my Docker container for [tt-rss](https://tt-rss.org/). This container only supports Postgresql.
 
+## What is it?
+[Tiny Tiny RSS](https://tt-rss.org/) is a "self-hosted" RSS application written in PHP.  
+When Google shut down Reader, TTRSS was the only reasonable alternative that I could find.  
+
+TTRSS has a lot of features and can work with multiple DBs.  
+This project is only concerned with making it work with Postgres.  
+
+The first step is to make an image that packages the latest TTRSS source into a container.   
+The Docker Compose file sets up the postgres container, the TTRSS container and links them together.   
+
+Everything is unencrypted (no HTTPS), so **DO NOT USE THIS IN PRODUCTION**.   
+You have been warned.
+
 ## Usage
 
 ### Docker Image, Compose and Makefile (aka The Simple Way)
