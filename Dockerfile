@@ -10,8 +10,10 @@ RUN sudo apt-get update -y && \
         libxml2-utils \
         php-curl \
         php-gd \
-        php-pgsql \
+        php-mbstring \
         php-mcrypt \
+        php-pgsql \
+        php-xml \
         postgresql-client \
         supervisor \
         tidy && \
