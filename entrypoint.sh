@@ -1,6 +1,7 @@
 #!/bin/bash
 
-set -e
+#set -e
+set -x
 
 : "${TTRSS_DB_HOST:="$DB_PORT_5432_TCP_ADDR"}"
 : "${TTRSS_DB_USER:="$DB_ENV_POSTGRES_USER"}"
@@ -20,12 +21,12 @@ if [[ "$RESULT" == "" ]]; then
     PGPASSWORD=$TTRSS_DB_PASS psql -h "$TTRSS_DB_HOST" -U "$TTRSS_DB_USER" -q "$TTRSS_DB_NAME" < /var/www/html/ttrss/schema/ttrss_schema_pgsql.sql
 fi
 
-sed -i -e "s/DB_HOST_VALUE/$TTRSS_DB_HOST/" /var/www/html/ttrss/config.php
-sed -i -e "s/DB_USER_VALUE/$TTRSS_DB_USER/" /var/www/html/ttrss/config.php
-sed -i -e "s/DB_NAME_VALUE/$TTRSS_DB_NAME/" /var/www/html/ttrss/config.php
-sed -i -e "s/DB_PASS_VALUE/$TTRSS_DB_PASS/" /var/www/html/ttrss/config.php
-sed -i -e "s/DB_PORT_VALUE/$TTRSS_DB_PORT/" /var/www/html/ttrss/config.php
-sed -i -e "s/FEED_CRYPT_KEY_VALUE/$TTRSS_FEED_CRYPT_KEY/" /var/www/html/ttrss/config.php
-sed -i -e "s#HOST_URL#$TTRSS_HOST_URL#" /var/www/html/ttrss/config.php
+sudo sed -i -e "s/DB_HOST_VALUE/$TTRSS_DB_HOST/" /var/www/html/ttrss/config.php
+sudo sed -i -e "s/DB_USER_VALUE/$TTRSS_DB_USER/" /var/www/html/ttrss/config.php
+sudo sed -i -e "s/DB_NAME_VALUE/$TTRSS_DB_NAME/" /var/www/html/ttrss/config.php
+sudo sed -i -e "s/DB_PASS_VALUE/$TTRSS_DB_PASS/" /var/www/html/ttrss/config.php
+sudo sed -i -e "s/DB_PORT_VALUE/$TTRSS_DB_PORT/" /var/www/html/ttrss/config.php
+sudo sed -i -e "s/FEED_CRYPT_KEY_VALUE/$TTRSS_FEED_CRYPT_KEY/" /var/www/html/ttrss/config.php
+sudo sed -i -e "s#HOST_URL#$TTRSS_HOST_URL#" /var/www/html/ttrss/config.php
 
-exec "$@"
+exec sudo "$@"
