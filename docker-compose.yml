@@ -14,6 +14,8 @@ services:
       - TTRSS_DB_USER=postgres
       - TTRSS_DB_PASS=
     restart: always
+    volumes:
+      - /tmp/ttrss-update.log:/tmp/ttrss-update.log
 
   db:
     image: postgres
