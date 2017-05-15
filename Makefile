@@ -1,5 +1,10 @@
+IMAGE=uvatbc/docker-ttrss
+
 build:
-	docker build -t uvatbc/docker-ttrss .
+	docker build -t $(IMAGE) .
+
+push:
+	docker push $(IMAGE)
 
 up:
 	docker-compose up
