@@ -25,6 +25,7 @@ To start the Postgres and TTRSS containers:
 
     make up
 
+Now open a browser to [localhost:10000](http://localhost:10000)   
 That is all.
 
 ### Run Manually
