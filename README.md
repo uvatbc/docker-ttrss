@@ -20,19 +20,14 @@ You have been warned.
 
 ## Usage
 
-### Docker Image, Compose and Makefile (aka The Simple Way)
-
-To build the image:
-
-    make build
-
+### Docker Compose and Makefile (aka The Simple Way)
 To start the Postgres and TTRSS containers:
 
     make up
 
 That is all.
 
-### Manually
+### Run Manually
 First start a Postgresql instance (or use a regular instance):
 
     sudo docker run \
