@@ -1,8 +1,13 @@
-FROM accupara/ubuntu:17.04
+FROM accupara/ubuntu:18.04
+
+# Copy files to docker
+COPY ttrss.conf config.php supervisord.conf entrypoint.sh /tmp/
 
 ## Install tools and libraries
-RUN sudo apt-get update -y && \
-    sudo apt-get install -y --no-install-recommends \
+RUN set -x \
+ && export DEBIAN_FRONTEND="noninteractive" \
+ && sudo apt-get update -y \
+ && sudo apt-get install -y --no-install-recommends \
         apache2 \
         ca-certificates \
         git \
@@ -11,40 +16,31 @@ RUN sudo apt-get update -y && \
         php-curl \
         php-gd \
         php-mbstring \
-        php-mcrypt \
         php-pgsql \
         php-xml \
         postgresql-client \
         supervisor \
-        tidy && \
+        tidy \
 # Checkout TT-RSS and plugins
-    sudo git clone https://tt-rss.org/gitlab/fox/tt-rss.git /var/www/html/ttrss && \
-    sudo git clone https://github.com/reuteras/ttrss_plugin-af_feedmod.git /var/www/html/ttrss/plugins.local/af_feedmod && \
-    sudo git clone https://github.com/fastcat/tt-rss-ff-xmllint /tmp/ff_xmllint && \
-    sudo mv /tmp/ff_xmllint/ff_xmllint /var/www/html/ttrss/plugins.local && \
+ && sudo git clone -v https://tt-rss.org/gitlab/fox/tt-rss.git /var/www/html/ttrss \
+# Copy all the files to their appropriate directories
+ && sudo mv /tmp/ttrss.conf       /etc/apache2/sites-available/ttrss.conf \
+ && sudo mv /tmp/config.php       /var/www/html/ttrss/config.php \
+ && sudo mv /tmp/supervisord.conf /etc/supervisor/supervisord.conf \
+ && sudo mv /tmp/entrypoint.sh    /entrypoint.sh \
 # Clean up
-    sudo rm -rf /var/www/html/ttrss/.git && \
-    sudo rm -rf /var/www/html/ttrss/plugins.local/af_feedmod/.git && \
-    sudo apt-get remove -y git && \
-    sudo apt-get autoremove -y && \
-    sudo apt-get clean && \
-    sudo rm -rf /var/lib/apt/lists/* && \
-    sudo rm -rf /tmp/* && \
-    sudo rm -rf /usr/share/doc /usr/local/share/man /var/cache/debconf/*-old
-
-# Copy files to docker
-COPY ttrss.conf /etc/apache2/sites-available/ttrss.conf
-COPY config.php /var/www/html/ttrss/config.php
-COPY supervisord.conf /etc/supervisor/supervisord.conf
-COPY entrypoint.sh /entrypoint.sh
-
+ && sudo apt-get autoremove -y \
+ && sudo apt-get clean \
+ && sudo rm -rf /var/lib/apt/lists/* \
+ && sudo rm -rf /tmp/* \
+ && sudo rm -rf /usr/share/doc /usr/local/share/man /var/cache/debconf/*-old \
 # Configure Apache
-RUN sudo chmod 644 /etc/apache2/sites-available/ttrss.conf && \
-    sudo a2ensite ttrss.conf && \
-    sudo a2dissite 000-default && \
-    sudo a2dissite default-ssl && \
-    sudo chmod +x /entrypoint.sh && \
-    sudo chown -R www-data:www-data /var/www/html/ttrss
+ && sudo chmod 644 /etc/apache2/sites-available/ttrss.conf \
+ && sudo a2ensite ttrss.conf \
+ && sudo a2dissite 000-default \
+ && sudo a2dissite default-ssl \
+ && sudo chmod +x /entrypoint.sh \
+ && sudo chown -R www-data:www-data /var/www/html/ttrss
 
 EXPOSE 80
 
