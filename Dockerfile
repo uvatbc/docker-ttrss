@@ -15,6 +15,7 @@ RUN set -x \
         libxml2-utils \
         php-curl \
         php-gd \
+        php-intl \
         php-mbstring \
         php-pgsql \
         php-xml \
@@ -22,7 +23,7 @@ RUN set -x \
         supervisor \
         tidy \
 # Checkout TT-RSS and plugins
- && sudo git clone -v https://tt-rss.org/gitlab/fox/tt-rss.git /var/www/html/ttrss \
+ && sudo git clone -v https://git.tt-rss.org/fox/tt-rss.git /var/www/html/ttrss \
 # Copy all the files to their appropriate directories
  && sudo mv /tmp/ttrss.conf       /etc/apache2/sites-available/ttrss.conf \
  && sudo mv /tmp/config.php       /var/www/html/ttrss/config.php \
