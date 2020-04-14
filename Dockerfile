@@ -10,6 +10,7 @@ RUN set -x \
  && sudo apt-get install -y --no-install-recommends \
         apache2 \
         ca-certificates \
+        cron \
         git \
         libapache2-mod-php \
         libxml2-utils \
@@ -41,7 +42,11 @@ RUN set -x \
  && sudo a2dissite 000-default \
  && sudo a2dissite default-ssl \
  && sudo chmod +x /entrypoint.sh \
- && sudo chown -R www-data:www-data /var/www/html/ttrss
+ && sudo chown -R www-data:www-data /var/www/html/ttrss \
+# Prep the crontab
+ && sudo touch /var/log/cron.log \
+ && echo "*/30 * * * * /usr/bin/php /var/www/html/ttrss/update.php --feeds --quiet" | sudo tee /etc/cron.d/update-ttrss \
+ && sudo crontab /etc/cron.d/update-ttrss
 
 EXPOSE 80
 

@@ -34,5 +34,8 @@ sudo sed -i -e "s/DB_PORT_VALUE/$TTRSS_DB_PORT/" /var/www/html/ttrss/config.php
 sudo sed -i -e "s/FEED_CRYPT_KEY_VALUE/$TTRSS_FEED_CRYPT_KEY/" /var/www/html/ttrss/config.php
 sudo sed -i -e "s#HOST_URL#$TTRSS_HOST_URL#" /var/www/html/ttrss/config.php
 
+# Start the crontab
+sudo cron
+
 # Run the original command as sudo: This containers default user is non-root
 exec sudo "$@"
