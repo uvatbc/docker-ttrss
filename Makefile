@@ -6,6 +6,9 @@ build:
 push:
 	docker push $(IMAGE)
 
+pull:
+	docker pull $(IMAGE)
+
 it:
 	docker run --rm -it $(IMAGE) bash
 
